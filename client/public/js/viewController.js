@@ -1,10 +1,10 @@
 "use strict";
 import { getData, getDataAll, resetChartZoom } from "./crud";
 
-const dataTable = document.querySelector(".dataContainer");
-const dataTable2 = document.querySelector(".dataContainer2");
-const dataTable3 = document.querySelector(".dataContainer3");
-const dataTable4 = document.querySelector(".dataContainer4");
+const dataTable = document.querySelector(".tableTable");
+const dataTable2 = document.querySelector(".tableTable2");
+const dataTable3 = document.querySelector(".tableTable3");
+const dataTable4 = document.querySelector(".tableTable4");
 // ---------------------------------------------------------- //
 const identifierField = document.querySelector(".getDataIdentifier");
 const identifierHeading = document.querySelector(".identifierHeading");

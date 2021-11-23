@@ -33,20 +33,16 @@ function getDataAll(endPoint, dataBase, tableSection) {
       const response = await axios.get(url);
       const data = response.data;
       const htmlHeader = `
-      <table class="tableTable">
         <tr>
-          <td>Data Yang Tersedia</td>
-        </tr>
-      </table>`;
+          <th>Data Yang Tersedia</th>
+        </tr>`;
       tableSection.insertAdjacentHTML("afterbegin", htmlHeader);
 
       data.forEach((ele) => {
         const htmlBody = `
-        <table class="tableTable">
-        <tr>
-        <td>${ele}</td>
-      </tr>
-      </table>`;
+        <tr >
+          <td>${ele}</td>
+        </tr>`;
         tableSection.insertAdjacentHTML("beforeend", htmlBody);
       });
     } catch (error) {
@@ -136,13 +132,11 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       // ! FOR DATA TYPE ACT - CONTENT
       if (header[1] === "TIME") {
         const htmlHeader = `
-      <table class="tableTable">
         <tr>
-          <td>${header[1]}</td>
-          <td>${header[0]}</td>
-          <td>${header[2]}</td>
-        </tr>
-      </table>`;
+          <th>${header[1]}</th>
+          <th>${header[0]}</th>
+          <th>${header[2]}</th>
+        </tr>`;
         tableSection.insertAdjacentHTML("afterbegin", htmlHeader);
 
         const contentIndicator = new Array();
@@ -164,13 +158,11 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
           if (dataCounter === "humiditytoohigh") counter4++;
 
           const htmlBody = `
-            <table class="tableTable">
               <tr>
                 <td>${Object.values(ele)[1]}</td>
                 <td>${Object.values(ele)[0]}</td>
                 <td>${Object.values(ele)[2]}</td>
-              </tr>
-            </table>`;
+              </tr>`;
           tableSection.insertAdjacentHTML("beforeend", htmlBody);
         });
 
@@ -197,28 +189,24 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       // ! FOR DATA TYPE PVH
       if (header[1] === "PV-H") {
         const htmlHeader = `
-      <table class="tableTable">
         <tr>
-          <td>${header[5]}</td>
-          <td>${header[2]}</td>
-          <td>${header[4]}</td>
-          <td>${header[1]}</td>
-          <td>${header[3]}</td>
-        </tr>
-      </table>`;
+          <th>${header[5]}</th>
+          <th>${header[2]}</th>
+          <th>${header[4]}</th>
+          <th>${header[1]}</th>
+          <th>${header[3]}</th>
+        </tr>`;
         tableSection.insertAdjacentHTML("afterbegin", htmlHeader);
 
         data.forEach((ele) => {
           const htmlBody = `
-            <table class="tableTable">
               <tr>
                 <td>${Object.values(ele)[5]}</td>
                 <td>${Object.values(ele)[2]}</td>
                 <td>${Object.values(ele)[4]}</td>
                 <td>${Object.values(ele)[1]}</td>
                 <td>${Object.values(ele)[3]}</td>
-              </tr>
-            </table>`;
+              </tr>`;
           tableSection.insertAdjacentHTML("beforeend", htmlBody);
         });
       }

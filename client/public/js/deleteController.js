@@ -1,7 +1,7 @@
 "use strict";
 import { getDataAll, deleteData } from "./crud";
 
-const dataTable = document.querySelector(".dataContainer");
+const dataTable = document.querySelector(".tableTable");
 
 const url = "http://localhost:8080";
 
@@ -10,11 +10,15 @@ function availableData() {
 }
 
 document.getElementById("deleteData").addEventListener("click", () => {
-  const identifier = document.querySelector(".getDataIdentifier").value;
-  if (!identifier || identifier.length < 8) {
-    alert("Tolong Masukkan Input Data Dengan Benar");
-  } else {
-    deleteData(url, identifier);
+  try {
+    const identifier = document.querySelector(".getDataIdentifier").value;
+    if (!identifier || identifier.length < 8) {
+      alert("Tolong Masukkan Input Data Dengan Benar");
+    } else {
+      deleteData(url, identifier);
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 

@@ -63,6 +63,10 @@ router.get("/delete", checkIsAuthenticated, isAdmin, (req, res) => {
   );
 });
 
+router.get("/test", (req, res) => {
+  res.render("../views/error-403.ejs");
+});
+
 // ** POST REQUEST
 
 router.post(

@@ -199,14 +199,6 @@ body {
   margin-top: 2em;
 }
 
-.dataContainer {
-  padding: 1.5em;
-  min-width: 50vw;
-  max-height: 40vh;
-  border-radius: 10px;
-  overflow-x: hidden;
-}
-
 .actionContainer {
   margin: 2em;
   display: flex;
@@ -281,55 +273,6 @@ body {
   border-radius: 1em;
 }
 
-/* /////////////////////////////////////////// */
-
-.dataContainer3 {
-  padding: 1.5em;
-  min-width: 50vw;
-  max-height: 60vh;
-  border-radius: 10px;
-  overflow-x: hidden;
-}
-
-.dataContainer3::-webkit-scrollbar {
-  width: 10px;
-}
-
-.dataContainer3::-webkit-scrollbar-track {
-  background-color: darkgrey;
-  border-radius: 1em;
-}
-
-.dataContainer3::-webkit-scrollbar-thumb {
-  background-color: rgb(95, 95, 95);
-  border-radius: 1em;
-}
-
-/* /////////////////////////////////////////// */
-
-.dataContainer4 {
-  margin-top: 2em;
-  padding: 1.5em;
-  min-width: 50vw;
-  max-height: 60vh;
-  border-radius: 10px;
-  overflow-x: hidden;
-}
-
-.dataContainer4::-webkit-scrollbar {
-  width: 10px;
-}
-
-.dataContainer4::-webkit-scrollbar-track {
-  background-color: darkgrey;
-  border-radius: 1em;
-}
-
-.dataContainer4::-webkit-scrollbar-thumb {
-  background-color: rgb(95, 95, 95);
-  border-radius: 1em;
-}
-
 .graphContainer {
   margin-left: 1em;
 }
@@ -351,7 +294,10 @@ body {
 
 /* TABLE STYLING */
 
-.tableTable {
+.tableTable,
+.tableTable2,
+.tableTable3,
+.tableTable4 {
   width: 100%;
   border: 1px solid black;
   border-spacing: 0.5em;
