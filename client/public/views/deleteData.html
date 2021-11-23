@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/index.css" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Database System</title>
+  </head>
+  <body>
+    <nav class="navigation">
+      <div class="topNav">
+        <a href="/upload">
+          <button
+            id="unggahDataBtn"
+            class="
+              bg-blue-500
+              hover:bg-blue-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded-full
+            "
+          >
+            Unggah Data
+          </button></a
+        >
+
+        <a href="/view">
+          <button
+            id="downloadDataBtn"
+            class="
+              bg-blue-500
+              hover:bg-blue-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded-full
+            "
+          >
+            Lihat Data
+          </button></a
+        >
+
+        <a href="#">
+          <button
+            id="downloadDataBtn"
+            class="
+              bg-red-500
+              hover:bg-red-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded-full
+            "
+          >
+            Hapus Data
+          </button></a
+        >
+      </div>
+
+      <div class="botNav">
+        <a href="/logout">
+          <button
+            id="logoutBtn"
+            class="
+              bg-blue-500
+              hover:bg-blue-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded-full
+            "
+          >
+            Keluar
+          </button></a
+        >
+      </div>
+    </nav>
+
+    <main id="lookData" class="lookData">
+      <div class="mainContainer">
+        <div class="infoContainer">
+          <div class="dataContainer">
+            <table class="tableTable"></table>
+          </div>
+        </div>
+
+        <div class="actionContainer">
+          <h1 class="identifierHeading">
+            Untuk Menghapus Data, Masukkan Tanggal Data Dengan Format YYYY/MM/DD
+          </h1>
+          <input
+            type="text"
+            class="getDataIdentifier"
+            placeholder="YYYY/MM/DD"
+            required
+          />
+          <button
+            id="deleteData"
+            class="
+              bg-blue-500
+              hover:bg-blue-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded-full
+            "
+          >
+            Hapus Data
+          </button>
+        </div>
+    </main>
+    <script type="module" src="../../dist/deleteController.bundle.js"></script>
+  </body>
+</html>
