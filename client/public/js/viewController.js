@@ -29,7 +29,9 @@ function clearGUI() {
 }
 
 document.getElementById("downloadData").addEventListener("click", () => {
-  const identifier = document.querySelector(".getDataIdentifier").value;
+  // const identifier = document.querySelector(".getDataIdentifier").value;
+  const identifier = Number(document.querySelector(".xoxos").textContent);
+  console.log(identifier);
   if (!identifier || identifier.length < 8) {
     alert("Tolong Masukkan Input Data Dengan Benar");
   } else {

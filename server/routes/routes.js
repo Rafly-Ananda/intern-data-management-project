@@ -63,10 +63,6 @@ router.get("/delete", checkIsAuthenticated, isAdmin, (req, res) => {
   );
 });
 
-router.get("/test", (req, res) => {
-  res.render("../views/error-403.ejs");
-});
-
 // ** POST REQUEST
 
 router.post(
@@ -164,6 +160,11 @@ router.delete(
   }
 );
 
+router.get("*", function (req, res) {
+  res.status(404);
+  return res.render("../views/error-404.ejs");
+});
+
 // ** AuthChecker__Middleware ** //
 
 // req.user => will return id username and password
@@ -184,8 +185,8 @@ function checkNotAuthenticated(req, res, next) {
 
 function isAdmin(req, res, next) {
   if (req.user.roles !== "admin") {
-    res.status(403);
-    return res.send("Error, you are not admin");
+    res.status(401);
+    return res.render("../views/error-401.ejs");
   }
   next();
 }

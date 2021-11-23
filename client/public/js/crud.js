@@ -40,8 +40,8 @@ function getDataAll(endPoint, dataBase, tableSection) {
 
       data.forEach((ele) => {
         const htmlBody = `
-        <tr >
-          <td>${ele}</td>
+        <tr>
+          <td class='xoxos'>${ele}</td>
         </tr>`;
         tableSection.insertAdjacentHTML("beforeend", htmlBody);
       });
