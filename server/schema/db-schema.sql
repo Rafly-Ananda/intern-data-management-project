@@ -4,6 +4,7 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR (255),
     password VARCHAR(255)
+    roles VARCHAR(255)
 );
 
 CREATE TABLE dataOne(
