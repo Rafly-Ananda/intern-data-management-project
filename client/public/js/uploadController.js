@@ -6,8 +6,11 @@ const uploadFile1 = document.getElementById("uploadFile1");
 const uploadFile2 = document.getElementById("uploadFile2");
 const uploadFile3 = document.getElementById("uploadFile3");
 const uploadFile4 = document.getElementById("uploadFile4");
+const uploadDataBtn = document.getElementById("uploadConfirm");
 
 const url = "http://localhost:8080";
+
+// ** Functions
 
 function uploadData(database, identifier, inputBox) {
   Papa.parse(document.getElementById(`${inputBox}`).files[0], {
@@ -21,7 +24,9 @@ function uploadData(database, identifier, inputBox) {
   });
 }
 
-document.getElementById("uploadConfirm").addEventListener("click", () => {
+// ** Event Listeners
+
+uploadDataBtn.addEventListener("click", () => {
   const dataId = document.querySelector(".identifierSelector").value;
   if (
     uploadFile1.files.length == 0 ||

@@ -1,20 +1,27 @@
 "use strict";
-import { getData, getDataAll, resetChartZoom } from "./crud";
+import { getData, getDataAll } from "./crud";
 
 const dataTable = document.querySelector(".tableTable");
 const dataTable2 = document.querySelector(".tableTable2");
 const dataTable3 = document.querySelector(".tableTable3");
 const dataTable4 = document.querySelector(".tableTable4");
+const dataIdentity = document.querySelector(".data__identity");
+const canvas1 = document.querySelector("#chart__1");
+const canvas2 = document.querySelector("#chart__2");
 // ---------------------------------------------------------- //
 const identifierField = document.querySelector(".getDataIdentifier");
 const identifierHeading = document.querySelector(".identifierHeading");
 const lookDataBtn = document.getElementById("downloadData");
 const reloadDocs = document.getElementById("reloadDocs");
 const indicatorHumidity = document.querySelector(".indicator");
-const graphResetBtn = document.querySelectorAll(".graphResetBtn");
+const getDataBtn = document.querySelector("#downloadData");
+const exportChart1Btn = document.querySelector("#export__btn_chart__1");
+const exportChart2Btn = document.querySelector("#export__btn_chart__2");
 // --------------------------------------------------------- //
 
 const url = "http://localhost:8080";
+
+// ** Functions
 
 function availableData() {
   getDataAll(url, "dataone", dataTable);
@@ -28,13 +35,22 @@ function clearGUI() {
   indicatorHumidity.innerHTML = "";
 }
 
-document.getElementById("downloadData").addEventListener("click", () => {
-  // const identifier = document.querySelector(".getDataIdentifier").value;
-  const identifier = Number(document.querySelector(".xoxos").textContent);
-  console.log(identifier);
+function downloadToPdf(canvas) {
+  const chartToImg = canvas.toDataURL("image/jpeg", 1.0);
+  let pdf = new jsPDF("landscape");
+  pdf.setFontSize(15);
+  pdf.addImage(chartToImg, "JPEG", 10, 10, 220, 115);
+  pdf.save(`${canvas}.pdf`);
+}
+
+// ** Event Listeners
+
+getDataBtn.addEventListener("click", () => {
+  const identifier = document.querySelector(".getDataIdentifier").value;
   if (!identifier || identifier.length < 8) {
     alert("Tolong Masukkan Input Data Dengan Benar");
   } else {
+    dataIdentity.textContent = `Menampilkan Data ${identifier}`;
     reloadDocs.classList.remove("hidden");
     clearGUI();
     getData(url, "datafour", identifier, dataTable4);
@@ -51,4 +67,40 @@ reloadDocs.addEventListener("click", () => {
   location.reload();
 });
 
-availableData();
+exportChart1Btn.addEventListener("click", () => {
+  downloadToPdf(canvas1);
+});
+
+exportChart2Btn.addEventListener("click", () => {
+  downloadToPdf(canvas2);
+});
+
+function start() {
+  availableData();
+}
+
+start();
+
+// document.body.addEventListener("click", function (event) {
+//   if (event.target.id == "test__btn") {
+//     const btn = document.querySelectorAll("#test__btn");
+//     btn.forEach((ele) => {
+//       ele.addEventListener("click", () => {
+//         const identifier = ele.getAttribute("data");
+//         if (!lookDataBtn.classList.contains("hidden")) {
+//           reloadDocs.classList.remove("hidden");
+//           clearGUI();
+//           getData(url, "datafour", identifier, dataTable4);
+//           getData(url, "datathree", identifier, dataTable3);
+//           getData(url, "datatwo", identifier, dataTable2, "chart__2");
+//           getData(url, "dataone", identifier, dataTable, "chart__1");
+//           lookDataBtn.classList.add("hidden");
+//           identifierField.classList.add("hidden");
+//           identifierHeading.classList.add("hidden");
+//         } else {
+//           location.reload();
+//         }
+//       });
+//     });
+//   }
+// });

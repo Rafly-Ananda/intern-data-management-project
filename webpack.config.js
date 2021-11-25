@@ -15,10 +15,6 @@ module.exports = {
       __dirname,
       "client/public/js/deleteController.js"
     ),
-    dataVisualization: path.resolve(
-      __dirname,
-      "client/public/js/dataVisualization.js"
-    ),
   },
 
   // devtool: "inline-source-map",

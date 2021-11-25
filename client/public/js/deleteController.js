@@ -2,14 +2,19 @@
 import { getDataAll, deleteData } from "./crud";
 
 const dataTable = document.querySelector(".tableTable");
+const deleteDataBtn = document.getElementById("deleteData");
 
 const url = "http://localhost:8080";
+
+//  ** Functions
 
 function availableData() {
   getDataAll(url, "dataone", dataTable);
 }
 
-document.getElementById("deleteData").addEventListener("click", () => {
+// ** Event Listeners
+
+deleteDataBtn.addEventListener("click", () => {
   try {
     const identifier = document.querySelector(".getDataIdentifier").value;
     if (!identifier || identifier.length < 8) {
@@ -22,4 +27,8 @@ document.getElementById("deleteData").addEventListener("click", () => {
   }
 });
 
-availableData();
+function start() {
+  availableData();
+}
+
+start();
