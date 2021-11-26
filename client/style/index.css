@@ -333,3 +333,7 @@ td {
 .hidden {
   display: none;
 }
+
+.lineThrough {
+  text-decoration: line-through;
+}

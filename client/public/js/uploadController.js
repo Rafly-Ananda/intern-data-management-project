@@ -8,7 +8,7 @@ const uploadFile3 = document.getElementById("uploadFile3");
 const uploadFile4 = document.getElementById("uploadFile4");
 const uploadDataBtn = document.getElementById("uploadConfirm");
 
-const url = "http://localhost:8080";
+const url = "http://localhost:5000";
 
 // ** Functions
 

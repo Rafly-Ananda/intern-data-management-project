@@ -4,7 +4,7 @@ import { getDataAll, deleteData } from "./crud";
 const dataTable = document.querySelector(".tableTable");
 const deleteDataBtn = document.getElementById("deleteData");
 
-const url = "http://localhost:8080";
+const url = "http://localhost:5000";
 
 //  ** Functions
 

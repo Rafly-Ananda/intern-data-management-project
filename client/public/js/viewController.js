@@ -20,7 +20,7 @@ const exportChart1Btn = document.querySelector("#export__btn_chart__1");
 const exportChart2Btn = document.querySelector("#export__btn_chart__2");
 // --------------------------------------------------------- //
 
-const url = "http://localhost:8080";
+const url = "http://localhost:5000";
 
 // ** Functions
 
