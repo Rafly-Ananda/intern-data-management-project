@@ -8,6 +8,7 @@ const dataTable4 = document.querySelector(".tableTable4");
 const dataIdentity = document.querySelector(".data__identity");
 const canvas1 = document.querySelector("#chart__1");
 const canvas2 = document.querySelector("#chart__2");
+const slides = document.querySelectorAll(".slide");
 // ---------------------------------------------------------- //
 const identifierField = document.querySelector(".getDataIdentifier");
 const identifierHeading = document.querySelector(".identifierHeading");
@@ -37,10 +38,17 @@ function clearGUI() {
 
 function downloadToPdf(canvas) {
   const chartToImg = canvas.toDataURL("image/jpeg", 1.0);
-  let pdf = new jsPDF("landscape");
+  let pdf = new jsPDF("portrait");
   pdf.setFontSize(15);
-  pdf.addImage(chartToImg, "JPEG", 10, 10, 220, 115);
-  pdf.save(`${canvas}.pdf`);
+  // pdf.addImage(chartToImg, "JPEG", 10, 10, 220, 115);
+  pdf.addImage(chartToImg, "JPEG", 15, 15, 180, 90);
+  pdf.save(`${canvas.getAttribute("id")}.pdf`);
+}
+
+function goToSlide(pages) {
+  slides.forEach((slide, index) => {
+    slide.style.transform = `translateX(${100 * (index - pages)}%)`;
+  });
 }
 
 // ** Event Listeners
@@ -76,6 +84,7 @@ exportChart2Btn.addEventListener("click", () => {
 });
 
 function start() {
+  goToSlide(0);
   availableData();
 }
 

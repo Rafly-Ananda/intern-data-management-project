@@ -267,6 +267,7 @@ body {
 }
 
 .graphContainer {
+  max-width: 62vw;
   margin-left: 1em;
 }
 
@@ -281,11 +282,8 @@ body {
 }
 
 .indicator {
-  max-height: 20vh;
-  max-width: 40vw;
   margin: 2em 0;
   padding: 0.75em;
-  overflow-y: scroll;
 }
 
 .indicator::-webkit-scrollbar {

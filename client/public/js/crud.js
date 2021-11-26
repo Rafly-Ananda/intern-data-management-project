@@ -92,6 +92,8 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       const data = response.data.info;
       const header = Object.keys(data[0]);
 
+      console.log(header[1]);
+
       // ! FOR DATA TYPE CH0 - CH1
       if (header[1] === "CH0") {
         data.forEach((ele) => {
