@@ -4,19 +4,8 @@ import zoomPlugin from "chartjs-plugin-zoom";
 import Chart from "chart.js/auto";
 
 Chart.register(zoomPlugin);
-const bgColor = {
-  id: "bgColor",
-  beforeDraw: (chart, options) => {
-    const { ctx, width, height } = chart;
-    ctx.fillStyle = "#f0ffff";
-    ctx.fillRect(0, 0, width, height);
-    ctx.restore();
-  },
-};
 const mainContainer = document.querySelector(".indicator");
 const dataContainer = document.querySelector(".tableContainer");
-
-let chart;
 
 // ? POST REQUEST
 // ! ========================== ! \\
@@ -82,9 +71,6 @@ function getDataAll(endPoint, dataBase, tableSection) {
 // ! ========================== ! \\
 function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
   const url = `${endPoint}/view/${dataBase}/info/${identifier}`;
-  const param1 = [];
-  const param2 = [];
-  const param3 = [];
 
   const sendGetRequest = async () => {
     try {
@@ -92,32 +78,33 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       const data = response.data.info;
       const header = Object.keys(data[0]);
 
-      console.log(header[1]);
-
       // ! FOR DATA TYPE CH0 - CH1
       if (header[1] === "CH0") {
+        let chart;
+        const chartParam__1 = new Array();
+        const chartParam__2 = new Array();
+        const chartParam__3 = new Array();
         data.forEach((ele) => {
-          param1.push(Object.values(ele)[1]);
-          param2.push(Object.values(ele)[2]);
-          param3.push(Object.values(ele)[3]);
+          chartParam__1.push(Object.values(ele)[1]);
+          chartParam__2.push(Object.values(ele)[2]);
+          chartParam__3.push(Object.values(ele)[3]);
         });
 
         // **CHART JS
-        const ctx = document.getElementById(`${graphSection}`).getContext("2d");
-        chart = new Chart(ctx, {
+        const config = {
           type: "line",
           data: {
-            labels: param3,
+            labels: chartParam__3,
             datasets: [
               {
                 label: "CH1",
-                data: param2,
+                data: chartParam__2,
                 borderColor: "rgba(44, 130, 201, 0.5)",
                 backgroundColor: "rgba(44, 130, 201, 0.5)",
               },
               {
                 label: "CH0",
-                data: param1,
+                data: chartParam__1,
                 borderColor: "rgba(240, 52, 52, 1)",
                 backgroundColor: "rgba(240, 52, 52, 0.5)",
               },
@@ -154,8 +141,21 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
             animation: false,
             spanGaps: true,
           },
-          plugins: [bgColor],
-        });
+          plugins: [
+            {
+              id: "bgColor",
+              beforeDraw: (chart, options) => {
+                const { ctx, width, height } = chart;
+                ctx.fillStyle = "#f0ffff";
+                ctx.fillRect(0, 0, width, height);
+                ctx.restore();
+              },
+            },
+          ],
+        };
+
+        const ctx = document.getElementById(`${graphSection}`).getContext("2d");
+        chart = new Chart(ctx, config);
       }
 
       // ! FOR DATA TYPE ACT - CONTENT
@@ -223,16 +223,19 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
         });
 
         // TODO FIX LATER FINDING UNIQUE OBJECTS
-        // const contentIndicatorUnique = new Set([...contentIndicator]);
-        // const toArray = [...contentIndicatorUnique];
-        // console.log(toArray);
-        // contentIndicator.forEach((element) => {
-        //   let xoxo = 0;
-        //   while (xoxo < toArray.length) {
-        //     if (toArray[xoxo] === element) counter1++;
-        //     xoxo++;
-        //   }
-        // });
+        const contentIndicatorUnique = new Set([...contentIndicator]);
+        const toArray = [...contentIndicatorUnique];
+
+        let newCtr = 0;
+        for (let i = 0; i < toArray.length; i++) {
+          for (let j = 0; j < contentIndicator.length; j++) {
+            if (toArray[i] === contentIndicator[j]) {
+              newCtr++;
+            }
+          }
+          console.log(`${toArray[i]} happens ${newCtr} times `);
+          newCtr = 0;
+        }
 
         const indicator = `
         <h1> ** Indikasi Motor Tidak Berputar Terjadi Sebanyak : ${counter5} kali</h1>
