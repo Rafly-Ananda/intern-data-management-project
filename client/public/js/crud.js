@@ -78,7 +78,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       const data = response.data.info;
       const header = Object.keys(data[0]);
 
-      // ! FOR DATA TYPE CH0 - CH1
+      // ! TEMPERATURE & HUMIDITY
       if (header[1] === "CH0") {
         let chart;
         const chartParam__1 = new Array();
@@ -97,13 +97,13 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
             labels: chartParam__3,
             datasets: [
               {
-                label: "CH1",
+                label: header[2],
                 data: chartParam__2,
                 borderColor: "rgba(44, 130, 201, 0.5)",
                 backgroundColor: "rgba(44, 130, 201, 0.5)",
               },
               {
-                label: "CH0",
+                label: header[1],
                 data: chartParam__1,
                 borderColor: "rgba(240, 52, 52, 1)",
                 backgroundColor: "rgba(240, 52, 52, 0.5)",
@@ -158,7 +158,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
         chart = new Chart(ctx, config);
       }
 
-      // ! FOR DATA TYPE ACT - CONTENT
+      // ! ALARM HISTORIS
       if (header[1] === "TIME") {
         const htmlHeader = `
         <tr>
@@ -222,7 +222,6 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
           tableSection.insertAdjacentHTML("beforeend", htmlBody);
         });
 
-        // TODO FIX LATER FINDING UNIQUE OBJECTS
         const contentIndicatorUnique = new Set([...contentIndicator]);
         const toArray = [...contentIndicatorUnique];
 
@@ -233,7 +232,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
               newCtr++;
             }
           }
-          console.log(`${toArray[i]} happens ${newCtr} times `);
+          console.log(`${toArray[i]} happens ${newCtr} time `);
           newCtr = 0;
         }
 
@@ -258,7 +257,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
         mainContainer.insertAdjacentHTML("afterbegin", indicator);
       }
 
-      // ! FOR DATA TYPE PVH
+      // ! HISTORY DATA
       if (header[1] === "PV-H") {
         const htmlHeader = `
         <tr>
