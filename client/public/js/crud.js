@@ -4,7 +4,7 @@ import zoomPlugin from "chartjs-plugin-zoom";
 import Chart from "chart.js/auto";
 
 Chart.register(zoomPlugin);
-const mainContainer = document.querySelector(".indicator");
+const indicator__container = document.querySelector(".indicator");
 const dataContainer = document.querySelector(".tableContainer");
 
 // ? POST REQUEST
@@ -160,6 +160,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
 
       // ! ALARM HISTORIS
       if (header[1] === "TIME") {
+        const contentIndicator = new Array();
         const htmlHeader = `
         <tr>
           <th>${header[1]}</th>
@@ -168,50 +169,9 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
         </tr>`;
         tableSection.insertAdjacentHTML("afterbegin", htmlHeader);
 
-        const contentIndicator = new Array();
-        let counter1 = 0;
-        let counter2 = 0;
-        let counter3 = 0;
-        let counter4 = 0;
-        let counter5 = 0;
-        let counter6 = 0;
-        let counter7 = 0;
-        let counter8 = 0;
-        let counter9 = 0;
-        let counter10 = 0;
-        let counter11 = 0;
-        let counter12 = 0;
-        let counter13 = 0;
-        let counter14 = 0;
-        let counter15 = 0;
-        let counter16 = 0;
-
         data.forEach((ele) => {
-          const dataCounter = Object.values(ele)[2]
-            .toLowerCase()
-            .split(" ")
-            .join("");
+          const dataCounter = Object.values(ele)[2];
           contentIndicator.push(dataCounter);
-
-          if (dataCounter === "temperaturetoolow") counter1++;
-          if (dataCounter === "humiditytoolow") counter2++;
-          if (dataCounter === "temperaturetoohigh") counter3++;
-          if (dataCounter === "humiditytoohigh") counter4++;
-
-          if (dataCounter === "motortidakberputar") counter5++;
-          if (dataCounter === "emergencystopactive") counter6++;
-          if (dataCounter === "temperaturesensordisconnect") counter7++;
-          if (dataCounter === "humiditysensordisconnect") counter8++;
-
-          if (dataCounter === "temptoolongreach") counter9++;
-          if (dataCounter === "humiditytoolongreach") counter10++;
-          if (dataCounter === "pintudibukaterlalulama") counter11++;
-          if (dataCounter === "thermostaterror") counter12++;
-
-          if (dataCounter === "sensoreggturninglefterror") counter13++;
-          if (dataCounter === "sensoreggturningrighterror") counter14++;
-          if (dataCounter === "sensordampererror") counter15++;
-          if (dataCounter === "fantrip") counter16++;
 
           const htmlBody = `
               <tr>
@@ -232,29 +192,14 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
               newCtr++;
             }
           }
-          console.log(`${toArray[i]} happens ${newCtr} time `);
+          const indicator__text = document.createTextNode(
+            `**Indikasi ${toArray[i]} Terjadi Sebanyak : ${newCtr} Kali`
+          );
+          const indicator__content = document.createElement("h1");
+          indicator__content.appendChild(indicator__text);
+          indicator__container.appendChild(indicator__content);
           newCtr = 0;
         }
-
-        const indicator = `
-        <h1> ** Indikasi Motor Tidak Berputar Terjadi Sebanyak : ${counter5} kali</h1>
-        <h1> ** Indikasi Temperature Too High Terjadi Sebanyak : ${counter3} kali</h1>
-        <h1> ** Indikasi Temperature Too Low Terjadi Sebanyak : ${counter1} kali</h1>
-        <h1> ** Indikasi Humidity Too High Terjadi Sebanyak : ${counter4} kali</h1>
-        <h1> ** Indikasi Humidity Too Low Terjadi Sebanyak : ${counter2} kali</h1>
-        <h1> ** Indikasi Emergency Stop Active Terjadi Sebanyak : ${counter6} kali</h1>
-        <h1> ** Indikasi Temperature Censor Disconnect Terjadi Sebanyak : ${counter7} kali</h1>
-        <h1> ** Indikasi Humidity Censor Disconnect Terjadi Sebanyak : ${counter8} kali</h1>
-        <h1> ** Indikasi Temp Too Long Reach Terjadi Sebanyak : ${counter9} kali</h1>
-        <h1> ** Indikasi Humidity Too Long Reach Terjadi Sebanyak : ${counter10} kali</h1>
-        <h1> ** Indikasi Pintu Dibuka Terlalu Lama Terjadi Sebanyak : ${counter11} kali</h1>
-        <h1> ** Indikasi Thermostat Error Terjadi Sebanyak : ${counter12} kali</h1>
-        <h1> ** Indikasi Censor Egg Turning Left Error Terjadi Sebanyak : ${counter13} kali</h1>
-        <h1> ** Indikasi Censor Egg Turning Right Error Terjadi Sebanyak : ${counter14} kali</h1>
-        <h1> ** Indikasi Censor Damper Error Terjadi Sebanyak : ${counter15} kali</h1>
-        <h1> ** Indikasi Fan Trip Terjadi Sebanyak : ${counter16} kali</h1>`;
-
-        mainContainer.insertAdjacentHTML("afterbegin", indicator);
       }
 
       // ! HISTORY DATA
