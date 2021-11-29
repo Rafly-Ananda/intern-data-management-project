@@ -22,15 +22,13 @@
   </head>
   <body>
     <nav class="navigation">
-      <div class="topNav">
+      <div class="top__nav__wrapper">
         <a href="/upload">
           <button
-            id="unggahDataBtn"
             class="
               bg-blue-500
               hover:bg-blue-700
               text-white
-              font-bold
               py-2
               px-4
               rounded-full
@@ -42,12 +40,10 @@
 
         <a href="/view">
           <button
-            id="downloadDataBtn"
             class="
               bg-blue-500
               hover:bg-blue-700
               text-white
-              font-bold
               py-2
               px-4
               rounded-full
@@ -59,12 +55,10 @@
 
         <a href="/delete">
           <button
-            id="downloadDataBtn"
             class="
               bg-red-500
               hover:bg-red-700
               text-white
-              font-bold
               py-2
               px-4
               rounded-full
@@ -75,15 +69,13 @@
         >
       </div>
 
-      <div class="botNav">
+      <div class="bot__nav__wrapper">
         <a href="/logout">
           <button
-            id="logoutBtn"
             class="
               bg-blue-500
               hover:bg-blue-700
               text-white
-              font-bold
               py-2
               px-4
               rounded-full
@@ -95,32 +87,31 @@
       </div>
     </nav>
 
-    <main id="lookData" class="lookData">
-      <div class="mainContainer">
-        <div class="infoContainer">
-          <div class="dataContainer">
-            <table class="tableTable"></table>
+    <main class="look_data_section">
+      <div class="search__container">
+        <div class="info__container">
+          <div class="data__container">
+            <table class="table table__1"></table>
           </div>
         </div>
 
-        <div class="actionContainer">
-          <h1 class="identifierHeading">
+        <div class="action__container">
+          <h1 class="identifier__heading">
             Untuk Melihat Data, Masukkan Tanggal Data Dengan Format YYYY/MM/DD
           </h1>
           <input
             type="text"
-            class="getDataIdentifier"
+            class="identifier__field identifier__value"
             placeholder="YYYY/MM/DD"
             required
           />
           <button
             type="submit"
-            id="downloadData"
             class="
+              look__data
               bg-blue-500
               hover:bg-blue-700
               text-white
-              font-bold
               py-2
               px-4
               rounded-full
@@ -128,58 +119,45 @@
           >
             Lihat Data
           </button>
-          <button
-            id="reloadDocs"
-            class="
-              hidden
-              bg-blue-500
-              hover:bg-blue-700
-              text-white
-              font-bold
-              py-2
-              px-4
-              rounded-full
-            "
-          >
-            Cek Data Lain
-          </button>
         </div>
       </div>
 
       <!-- dataTable SECTION  -->
-      <div class="tableContainer hidden">
-        <!-- <div class="mainContainer">
-        <div class="dataContainer">
-          <table class="tableTable"></table>
-        </div>
-      </div>
-
-      <div class="mainContainer">
-        <div class="dataContainer">
-          <table class="tableTable2"></table>
-        </div>
-      </div> -->
-
+      <div class="table__container hidden">
         <!-- TABLE DATA -->
         <h1 class="data__identity"></h1>
-        <div class="mainContainer">
-          <div class="dataContainer2">
-            <table class="tableTable3"></table>
+        <button
+          class="
+            reload__btn
+            hidden
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            py-2
+            px-4
+            rounded-full
+          "
+        >
+          Cek Data Lain
+        </button>
+
+        <div class="main__container">
+          <div class="data__container">
+            <table class="table table__3"></table>
           </div>
         </div>
 
-        <div class="mainContainer">
-          <div class="dataContainer2" style="margin-top: 2em">
-            <table class="tableTable4"></table>
+        <div class="main__container">
+          <div class="data__container" style="margin-top: 2em">
+            <table class="table table__4"></table>
           </div>
           <div class="indicator"></div>
         </div>
 
         <!-- GRAPH DATA -->
-        <div class="mainContainer">
+        <div class="main__container">
           <div class="graphContainer">
             <h1 class="graphTitle">Grafik Data Humidity</h1>
-            <!-- <canvas id="chart__1" width="1100" height="500"></canvas> -->
             <canvas id="chart__1" width="1100" height="500"></canvas>
             <button
               id="export__btn_chart__1"
@@ -188,7 +166,6 @@
                 bg-blue-500
                 hover:bg-blue-700
                 text-white
-                font-bold
                 py-2
                 px-4
                 rounded-full
@@ -199,7 +176,7 @@
           </div>
         </div>
 
-        <div class="mainContainer">
+        <div class="main__container">
           <div class="graphContainer">
             <h1 class="graphTitle">Grafik Data Temperature</h1>
             <canvas id="chart__2" width="1100" height="500"></canvas>
@@ -210,7 +187,6 @@
                 bg-blue-500
                 hover:bg-blue-700
                 text-white
-                font-bold
                 py-2
                 px-4
                 rounded-full

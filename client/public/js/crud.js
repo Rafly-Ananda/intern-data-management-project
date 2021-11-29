@@ -5,7 +5,7 @@ import Chart from "chart.js/auto";
 
 Chart.register(zoomPlugin);
 const indicator__container = document.querySelector(".indicator");
-const dataContainer = document.querySelector(".tableContainer");
+const data__container = document.querySelector(".table__container");
 
 // ? POST REQUEST
 // ! ========================== ! \\
@@ -193,7 +193,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
             }
           }
           const indicator__text = document.createTextNode(
-            `** Indikasi ${toArray[i]} Terjadi Sebanyak : ${newCtr} Kali`
+            `** ${toArray[i]} Terjadi Sebanyak : ${newCtr} Kali`
           );
           const indicator__content = document.createElement("h1");
           indicator__content.appendChild(indicator__text);
@@ -226,11 +226,11 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
           tableSection.insertAdjacentHTML("beforeend", htmlBody);
         });
       }
-      dataContainer.classList.remove("hidden");
+      data__container.classList.remove("hidden");
     } catch (error) {
       console.log(error);
       alert("data tidak tersedia");
-      dataContainer.classList.add("hidden");
+      data__container.classList.add("hidden");
     }
   };
   sendGetRequest();

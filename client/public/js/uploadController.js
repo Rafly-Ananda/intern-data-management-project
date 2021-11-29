@@ -27,7 +27,7 @@ function uploadData(database, identifier, inputBox) {
 // ** Event Listeners
 
 uploadDataBtn.addEventListener("click", () => {
-  const dataId = document.querySelector(".identifierSelector").value;
+  const dataId = document.querySelector(".identifier__value").value;
   if (
     uploadFile1.files.length == 0 ||
     uploadFile2.files.length == 0 ||

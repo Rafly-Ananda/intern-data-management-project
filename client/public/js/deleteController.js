@@ -1,8 +1,8 @@
 "use strict";
 import { getDataAll, deleteData } from "./crud";
 
-const dataTable = document.querySelector(".tableTable");
-const deleteDataBtn = document.getElementById("deleteData");
+const dataTable = document.querySelector(".table__1");
+const deleteDataBtn = document.querySelector(".delete__data");
 
 const url = "http://localhost:5000";
 
@@ -16,7 +16,7 @@ function availableData() {
 
 deleteDataBtn.addEventListener("click", () => {
   try {
-    const identifier = document.querySelector(".getDataIdentifier").value;
+    const identifier = document.querySelector(".identifier__value").value;
     if (!identifier || identifier.length < 8) {
       alert("Tolong Masukkan Input Data Dengan Benar");
     } else {
