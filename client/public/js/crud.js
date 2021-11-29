@@ -193,7 +193,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
             }
           }
           const indicator__text = document.createTextNode(
-            `**Indikasi ${toArray[i]} Terjadi Sebanyak : ${newCtr} Kali`
+            `** Indikasi ${toArray[i]} Terjadi Sebanyak : ${newCtr} Kali`
           );
           const indicator__content = document.createElement("h1");
           indicator__content.appendChild(indicator__text);
