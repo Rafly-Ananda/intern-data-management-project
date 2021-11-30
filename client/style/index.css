@@ -90,6 +90,11 @@ body {
   font-weight: 400;
 }
 
+.hero__img {
+  margin: 2em 0;
+  max-width: 20vw;
+}
+
 /* UPLOAD PAGE STYLING */
 
 .upload__data {
@@ -285,7 +290,7 @@ body {
   font-size: 1.5rem;
   font-weight: 400;
   border: 2px solid darkgrey;
-  border-radius: 1em;
+  border-radius: 0.75em;
 }
 
 /* TABLE STYLING */

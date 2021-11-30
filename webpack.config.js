@@ -17,17 +17,17 @@ module.exports = {
     ),
   },
 
-  // devtool: "inline-source-map",
-
-  // devServer: {
-  //   contentBase: path.resolve(__dirname, "dist"),
-  //   open: true,
-  //   hot: true,
-  // },
-
   output: {
     path: path.resolve(__dirname, "client/dist"),
     filename: "[name].bundle.js",
+    assetModuleFilename: "src/assets/images/[name].[ext]",
+  },
+
+  // Loaders
+  module: {
+    rules: [
+      { test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: "asset/resource" },
+    ],
   },
 
   // plugins: [

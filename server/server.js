@@ -12,9 +12,8 @@ const corsOptions = {
 };
 
 // Static
-app.use(express.static(__dirname));
-app.use("/js", express.static("../client/public/js/"));
 app.use(express.static("../client"));
+app.use(express.static("../client/public"));
 
 // Middlewares
 app.use(express.json({ limit: "50mb" }));
