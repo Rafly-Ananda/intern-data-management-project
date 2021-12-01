@@ -1,6 +1,5 @@
 require("dotenv").config();
 const Pool = require("pg").Pool;
-Pool.default.ssl = true;
 
 const devConfig = {
   user: process.env.DB_USER,
@@ -8,6 +7,9 @@ const devConfig = {
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 };
 
 const productionConfig = {
