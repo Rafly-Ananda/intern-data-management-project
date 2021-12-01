@@ -7,13 +7,13 @@ const devConfig = {
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
-  ssl: {
-    rejectUnauthorized: false,
-  },
 };
 
 const productionConfig = {
   connectionString: process.env.DATABASE_URL, // will be coming from heroku addon ( cloud postgres )
+  ssl: {
+    rejectUnauthorized: false,
+  },
 };
 
 const pool = new Pool(
