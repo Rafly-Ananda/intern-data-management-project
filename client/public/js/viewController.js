@@ -27,7 +27,7 @@ const exportChart2Btn = document.querySelector("#export__btn_chart__2");
 // ** Functions
 
 function getDataAll(dataBase, tableSection) {
-  const url = `http://localhost:5000/view/${dataBase}/info`;
+  const url = `/view/${dataBase}/info`;
   const sendGetRequest = async () => {
     try {
       const response = await axios.get(url);
@@ -57,9 +57,7 @@ function getDataAll(dataBase, tableSection) {
 function getData(dataBase, identifier, tableSection, graphSection) {
   const sendGetRequest = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/view/${dataBase}/info/${identifier}`
-      );
+      const response = await axios.get(`/view/${dataBase}/info/${identifier}`);
       const data = response.data.info;
       const header = Object.keys(data[0]);
 

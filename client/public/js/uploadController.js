@@ -19,10 +19,7 @@ function postData(database, identifier, inputBox) {
         skipEmptyLines: true,
         fastMode: true,
         complete: function (results) {
-          axios.post(
-            `http://localhost:5000/upload/${database}/${identifier}`,
-            results.data
-          );
+          axios.post(`/upload/${database}/${identifier}`, results.data);
         },
       });
     } catch (error) {
@@ -50,6 +47,5 @@ uploadDataBtn.addEventListener("click", () => {
     postData("datathree", dataId, "uploadFile3");
     postData("datafour", dataId, "uploadFile4");
     alert("Data Berhasil Ditambahkan");
-    location.reload();
   }
 });

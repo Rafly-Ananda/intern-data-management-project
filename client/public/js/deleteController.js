@@ -9,7 +9,7 @@ const deleteDataBtn = document.querySelector(".delete__data");
 function deleteData(identifier) {
   const sendDeleteRequest = async () => {
     try {
-      await axios.delete(`http://localhost:5000/delete/${identifier}`);
+      await axios.delete(`/delete/${identifier}`);
       alert("Data Deleted");
       location.reload();
     } catch (error) {
@@ -20,10 +20,9 @@ function deleteData(identifier) {
 }
 
 function getDataAll(dataBase, tableSection) {
-  const url = `http://localhost:5000/view/${dataBase}/info`;
   const sendGetRequest = async () => {
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(`/view/${dataBase}/info`);
       const data = response.data;
       const htmlHeader = `
         <tr>
