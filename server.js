@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 8080;
@@ -12,8 +13,8 @@ const corsOptions = {
 };
 
 // Static
-app.use(express.static("../client"));
-app.use(express.static("../client/public"));
+app.use(express.static(path.join(__dirname + "/client")));
+app.use(express.static(path.join(__dirname + "/client/public")));
 
 // Middlewares
 app.use(express.json({ limit: "50mb" }));

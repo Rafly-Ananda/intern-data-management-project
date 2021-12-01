@@ -30,14 +30,12 @@ router.use(passport.session());
 
 router.get("/", checkIsAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname + "../../../client/public/views/uploadData.html")
+    path.join(__dirname + "../../client/public/views/uploadData.html")
   );
 });
 
 router.get("/login", checkNotAuthenticated, (req, res) => {
-  res.sendFile(
-    path.join(__dirname + "../../../client/public/views/login.html")
-  );
+  res.sendFile(path.join(__dirname + "../../client/public/views/login.html"));
 });
 
 router.get("/logout", (req, res) => {
@@ -47,25 +45,25 @@ router.get("/logout", (req, res) => {
 
 router.get("/upload", checkIsAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname + "../../../client/public/views/uploadData.html")
+    path.join(__dirname + "../../client/public/views/uploadData.html")
   );
 });
 
 router.get("/view", checkIsAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname + "../../../client/public/views/viewData.html")
+    path.join(__dirname + "../../client/public/views/viewData.html")
   );
 });
 
 router.get("/delete", checkIsAuthenticated, isAdmin, (req, res) => {
   res.sendFile(
-    path.join(__dirname + "../../../client/public/views/deleteData.html")
+    path.join(__dirname + "../../client/public/views/deleteData.html")
   );
 });
 
 router.get("/export", (req, res) => {
   res.sendFile(
-    path.join(__dirname + "../../../client/public/views/exportData.html")
+    path.join(__dirname + "../../client/public/views/exportData.html")
   );
 });
 

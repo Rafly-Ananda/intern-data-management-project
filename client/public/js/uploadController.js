@@ -1,6 +1,6 @@
 "use strict";
 import Papa from "papaparse";
-import { postData } from "./crud";
+import axios, { Axios } from "axios";
 
 const uploadFile1 = document.getElementById("uploadFile1");
 const uploadFile2 = document.getElementById("uploadFile2");
@@ -8,20 +8,28 @@ const uploadFile3 = document.getElementById("uploadFile3");
 const uploadFile4 = document.getElementById("uploadFile4");
 const uploadDataBtn = document.getElementById("uploadConfirm");
 
-const url = "http://localhost:5000";
-
 // ** Functions
 
-function uploadData(database, identifier, inputBox) {
-  Papa.parse(document.getElementById(`${inputBox}`).files[0], {
-    download: true,
-    header: true,
-    skipEmptyLines: true,
-    fastMode: true,
-    complete: function (results) {
-      postData(`${url}/upload/${database}/${identifier}`, results.data);
-    },
-  });
+function postData(database, identifier, inputBox) {
+  const sendPostRequest = () => {
+    try {
+      Papa.parse(document.getElementById(`${inputBox}`).files[0], {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        fastMode: true,
+        complete: function (results) {
+          axios.post(
+            `http://localhost:5000/upload/${database}/${identifier}`,
+            results.data
+          );
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  sendPostRequest();
 }
 
 // ** Event Listeners
@@ -37,9 +45,11 @@ uploadDataBtn.addEventListener("click", () => {
   ) {
     alert("Isi Semua Field Input!");
   } else {
-    uploadData("dataone", dataId, "uploadFile1");
-    uploadData("datatwo", dataId, "uploadFile2");
-    uploadData("datathree", dataId, "uploadFile3");
-    uploadData("datafour", dataId, "uploadFile4");
+    postData("dataone", dataId, "uploadFile1");
+    postData("datatwo", dataId, "uploadFile2");
+    postData("datathree", dataId, "uploadFile3");
+    postData("datafour", dataId, "uploadFile4");
+    alert("Data Berhasil Ditambahkan");
+    location.reload();
   }
 });

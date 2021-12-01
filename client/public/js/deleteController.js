@@ -1,15 +1,48 @@
 "use strict";
-import { getDataAll, deleteData } from "./crud";
+import axios, { Axios } from "axios";
 
 const dataTable = document.querySelector(".table__1");
 const deleteDataBtn = document.querySelector(".delete__data");
 
-const url = "http://localhost:5000";
-
 //  ** Functions
 
-function availableData() {
-  getDataAll(url, "dataone", dataTable);
+function deleteData(identifier) {
+  const sendDeleteRequest = async () => {
+    try {
+      await axios.delete(`http://localhost:5000/delete/${identifier}`);
+      alert("Data Deleted");
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  sendDeleteRequest();
+}
+
+function getDataAll(dataBase, tableSection) {
+  const url = `http://localhost:5000/view/${dataBase}/info`;
+  const sendGetRequest = async () => {
+    try {
+      const response = await axios.get(url);
+      const data = response.data;
+      const htmlHeader = `
+        <tr>
+          <th colspan="2">Data Yang Tersedia</th>
+        </tr>`;
+      tableSection.insertAdjacentHTML("afterbegin", htmlHeader);
+
+      data.forEach((ele) => {
+        const htmlBody = `
+        <tr> 
+          <td>${ele}</td>
+        </tr>`;
+        tableSection.insertAdjacentHTML("beforeend", htmlBody);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  sendGetRequest();
 }
 
 // ** Event Listeners
@@ -20,7 +53,7 @@ deleteDataBtn.addEventListener("click", () => {
     if (!identifier || identifier.length < 8) {
       alert("Tolong Masukkan Input Data Dengan Benar");
     } else {
-      deleteData(url, identifier);
+      deleteData(identifier);
     }
   } catch (error) {
     console.log(error);
@@ -28,7 +61,7 @@ deleteDataBtn.addEventListener("click", () => {
 });
 
 function start() {
-  availableData();
+  getDataAll("dataone", dataTable);
 }
 
 start();
