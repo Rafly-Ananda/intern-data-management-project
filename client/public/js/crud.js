@@ -41,22 +41,6 @@ function getDataAll(endPoint, dataBase, tableSection) {
         <tr> 
           <td>${ele}</td>
         </tr>`;
-        //   <td>
-        //   <button
-        //   data = "${ele}"
-        //   id="test__btn"
-        //   class="
-        //   bg-blue-500
-        //   hover:bg-blue-700
-        //   text-white
-        //   font-bold
-        //   py-2
-        //   px-4
-        //   rounded-full
-        // "
-        // >
-        //   Click me
-        // </button> </td>
         tableSection.insertAdjacentHTML("beforeend", htmlBody);
       });
     } catch (error) {
@@ -79,7 +63,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       const header = Object.keys(data[0]);
 
       // ! TEMPERATURE & HUMIDITY
-      if (header[1] === "CH0") {
+      if (header.includes("CH0")) {
         let chart;
         const chartParam__1 = new Array();
         const chartParam__2 = new Array();
@@ -159,7 +143,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       }
 
       // ! ALARM HISTORIS
-      if (header[1] === "TIME") {
+      if (header.includes("CONTENT")) {
         const contentIndicator = new Array();
         const htmlHeader = `
         <tr>
@@ -203,7 +187,7 @@ function getData(endPoint, dataBase, identifier, tableSection, graphSection) {
       }
 
       // ! HISTORY DATA
-      if (header[1] === "PV-H") {
+      if (header.includes("PV-H")) {
         const htmlHeader = `
         <tr>
           <th>${header[5]}</th>
