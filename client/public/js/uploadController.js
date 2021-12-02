@@ -49,6 +49,8 @@ uploadDataBtn.addEventListener("click", () => {
     postData("datatwo", dataId, "uploadFile2");
     postData("datathree", dataId, "uploadFile3");
     postData("datafour", dataId, "uploadFile4");
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 5000);
   }
 });
