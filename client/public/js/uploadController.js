@@ -11,7 +11,7 @@ const uploadDataBtn = document.getElementById("uploadConfirm");
 // ** Functions
 
 function postData(database, identifier, inputBox) {
-  const sendPostRequest = () => {
+  const sendPostRequest = async () => {
     try {
       Papa.parse(document.getElementById(`${inputBox}`).files[0], {
         download: true,
@@ -19,7 +19,7 @@ function postData(database, identifier, inputBox) {
         skipEmptyLines: true,
         fastMode: true,
         complete: function (results) {
-          axios.post(`/upload/${database}/${identifier}`, results.data);
+          await axios.post(`/upload/${database}/${identifier}`, results.data);
         },
       });
     } catch (error) {
