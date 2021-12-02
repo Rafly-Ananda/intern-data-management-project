@@ -11,7 +11,7 @@
     "start": "node server.js",
     "heroku-postbuild": "npm run install && npm run build",
     "dev": "webpack --watch --mode development",
-    "build": "webpack --mode production"
+    "webpack-build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",

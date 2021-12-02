@@ -84,11 +84,11 @@ router.post(
 router.post(
   "/upload/:database/:identifier",
   checkIsAuthenticated,
-  async (req, res) => {
+  (req, res) => {
     try {
       const info = req.body;
       const { database, identifier } = req.params;
-      await pool.query(
+      pool.query(
         `INSERT INTO ${database} (identifier, info) VALUES ($1, $2) RETURNING *`, // returning is a callback function to read the data that was inserted
         [identifier, JSON.stringify(info)]
       );

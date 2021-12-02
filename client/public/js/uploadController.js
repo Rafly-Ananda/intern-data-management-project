@@ -19,9 +19,9 @@ function postData(database, identifier, inputBox) {
     skipEmptyLines: true,
     fastMode: true,
     complete: function (results) {
-      const sendPostRequest = async () => {
+      const sendPostRequest = () => {
         try {
-          await axios.post(`/upload/${database}/${identifier}`, results.data);
+          axios.post(`/upload/${database}/${identifier}`, results.data);
           alert(`Data ${csvData.name} sudah ditambakan kedalam database`);
         } catch (error) {
           console.log(error);
