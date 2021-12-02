@@ -7,19 +7,20 @@ const uploadFile2 = document.getElementById("uploadFile2");
 const uploadFile3 = document.getElementById("uploadFile3");
 const uploadFile4 = document.getElementById("uploadFile4");
 const uploadDataBtn = document.getElementById("uploadConfirm");
+const overlay = document.querySelector(".overlay");
 
 // ** Functions
 
 function postData(database, identifier, inputBox) {
-  const sendPostRequest = async () => {
+  const sendPostRequest = () => {
     try {
       Papa.parse(document.getElementById(`${inputBox}`).files[0], {
         download: true,
         header: true,
         skipEmptyLines: true,
         fastMode: true,
-        complete: function (results) {
-          await axios.post(`/upload/${database}/${identifier}`, results.data);
+        complete: async function (results) {
+          axios.post(`/upload/${database}/${identifier}`, results.data);
         },
       });
     } catch (error) {
@@ -42,10 +43,17 @@ uploadDataBtn.addEventListener("click", () => {
   ) {
     alert("Isi Semua Field Input!");
   } else {
-    postData("dataone", dataId, "uploadFile1");
-    postData("datatwo", dataId, "uploadFile2");
-    postData("datathree", dataId, "uploadFile3");
-    postData("datafour", dataId, "uploadFile4");
-    alert("Data Berhasil Ditambahkan");
+    const sendData = new Promise((resolve, reject) => {
+      overlay.classList.remove("hidden");
+      resolve(overlay.classList.add("hidden"));
+    });
+
+    sendData.then(() => {
+      postData("dataone", dataId, "uploadFile1");
+      postData("datatwo", dataId, "uploadFile2");
+      postData("datathree", dataId, "uploadFile3");
+      postData("datafour", dataId, "uploadFile4");
+      alert("data berhasil ditambahkan");
+    });
   }
 });

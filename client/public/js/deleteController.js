@@ -49,7 +49,7 @@ function getDataAll(dataBase, tableSection) {
 deleteDataBtn.addEventListener("click", () => {
   try {
     const identifier = document.querySelector(".identifier__value").value;
-    if (!identifier || identifier.length < 8) {
+    if (!identifier) {
       alert("Tolong Masukkan Input Data Dengan Benar");
     } else {
       deleteData(identifier);
