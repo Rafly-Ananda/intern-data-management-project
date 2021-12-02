@@ -45,9 +45,7 @@ uploadDataBtn.addEventListener("click", () => {
   } else {
     const sendData = new Promise((resolve, reject) => {
       overlay.classList.remove("hidden");
-      setTimeout(() => {
-        resolve(overlay.classList.add("hidden"));
-      }, 3000);
+      resolve(overlay.classList.add("hidden"));
     });
 
     sendData.then(() => {
