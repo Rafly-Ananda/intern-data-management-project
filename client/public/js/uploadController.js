@@ -12,9 +12,9 @@ const overlay = document.querySelector(".overlay");
 // ** Functions
 
 function postData(database, identifier, inputBox) {
-  let data;
-  Papa.parse(document.getElementById(`${inputBox}`).files[0], {
-    download: false,
+  overlay.classList.remove("hidden");
+  const csvData = document.getElementById(`${inputBox}`).files[0];
+  Papa.parse(csvData, {
     header: true,
     skipEmptyLines: true,
     fastMode: true,
@@ -22,7 +22,7 @@ function postData(database, identifier, inputBox) {
       const sendPostRequest = async () => {
         try {
           await axios.post(`/upload/${database}/${identifier}`, results.data);
-          alert(`data ${identifier} to ${database} added`);
+          alert(`Data ${csvData.name} sudah ditambakan kedalam database`);
         } catch (error) {
           console.log(error);
         }
@@ -49,5 +49,6 @@ uploadDataBtn.addEventListener("click", () => {
     postData("datatwo", dataId, "uploadFile2");
     postData("datathree", dataId, "uploadFile3");
     postData("datafour", dataId, "uploadFile4");
+    location.reload();
   }
 });

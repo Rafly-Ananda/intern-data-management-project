@@ -88,7 +88,7 @@ router.post(
     try {
       const info = req.body;
       const { database, identifier } = req.params;
-      const newData = await pool.query(
+      await pool.query(
         `INSERT INTO ${database} (identifier, info) VALUES ($1, $2) RETURNING *`, // returning is a callback function to read the data that was inserted
         [identifier, JSON.stringify(info)]
       );
@@ -141,19 +141,19 @@ router.delete(
   async (req, res) => {
     const { identifier } = req.params;
     try {
-      const data__1 = await pool.query(
+      await pool.query(
         `DELETE FROM dataone WHERE identifier = $1 RETURNING *`,
         [identifier]
       );
-      const data__2 = await pool.query(
+      await pool.query(
         `DELETE FROM datatwo WHERE identifier = $1 RETURNING *`,
         [identifier]
       );
-      const data__3 = await pool.query(
+      await pool.query(
         `DELETE FROM datathree WHERE identifier = $1 RETURNING *`,
         [identifier]
       );
-      const data__4 = await pool.query(
+      await pool.query(
         `DELETE FROM datafour WHERE identifier = $1 RETURNING *`,
         [identifier]
       );
