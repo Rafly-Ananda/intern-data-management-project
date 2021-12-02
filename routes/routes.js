@@ -92,7 +92,7 @@ router.post(
         `INSERT INTO ${database} (identifier, info) VALUES ($1, $2) RETURNING *`, // returning is a callback function to read the data that was inserted
         [identifier, JSON.stringify(info)]
       );
-      res.json(newData); // to return only the data
+      res.json(`data ${identifier} added`); // to return only the data
     } catch (err) {
       console.log(err.message);
     }
