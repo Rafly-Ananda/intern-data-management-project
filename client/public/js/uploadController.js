@@ -21,8 +21,13 @@ function postData(database, identifier, inputBox) {
     complete: function (results) {
       const sendPostRequest = () => {
         try {
-          axios.post(`/upload/${database}/${identifier}`, results.data);
-          alert(`Data ${csvData.name} sudah ditambakan kedalam database`);
+          const postRequest = axios.post(
+            `/upload/${database}/${identifier}`,
+            results.data
+          );
+          postRequest.then(() => {
+            alert(`Data ${csvData.name} sudah ditambakan kedalam database`);
+          });
         } catch (error) {
           console.log(error);
         }
@@ -49,8 +54,5 @@ uploadDataBtn.addEventListener("click", () => {
     postData("datatwo", dataId, "uploadFile2");
     postData("datathree", dataId, "uploadFile3");
     postData("datafour", dataId, "uploadFile4");
-    setTimeout(() => {
-      location.reload();
-    }, 5000);
   }
 });
