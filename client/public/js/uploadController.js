@@ -50,8 +50,6 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
     fastMode: true,
     complete: function (results) {
       axios.post(`/upload/dataone/${identifier}`, results.data).then(() => {
-        alert(`data ${csvData__1.name} sudah ditambahkan`);
-
         Papa.parse(csvData__2, {
           header: true,
           skipEmptyLines: true,
@@ -61,8 +59,6 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
             axios
               .post(`/upload/datatwo/${identifier}`, results.data)
               .then(() => {
-                alert(`data ${csvData__2.name} sudah ditambahkan`);
-
                 Papa.parse(csvData__3, {
                   header: true,
                   skipEmptyLines: true,
@@ -72,8 +68,6 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
                     axios
                       .post(`/upload/datathree/${identifier}`, results.data)
                       .then(() => {
-                        alert(`data ${csvData__3.name} sudah ditambahkan`);
-
                         Papa.parse(csvData__4, {
                           header: true,
                           skipEmptyLines: true,
@@ -86,9 +80,7 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
                                 results.data
                               )
                               .then(() => {
-                                alert(
-                                  `data ${csvData__4.name} sudah ditambahkan`
-                                );
+                                alert(`Semua data berhasil ditambahkan !`);
                                 overlay.classList.add("hidden");
                                 location.reload();
                               });
