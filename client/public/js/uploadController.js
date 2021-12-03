@@ -12,7 +12,6 @@ const overlay = document.querySelector(".overlay");
 // ** Functions
 
 function postData(database, identifier, inputBox) {
-  overlay.classList.remove("hidden");
   const csvData = document.getElementById(`${inputBox}`).files[0];
   Papa.parse(csvData, {
     header: true,
@@ -21,6 +20,7 @@ function postData(database, identifier, inputBox) {
     complete: function (results) {
       const sendPostRequest = () => {
         try {
+          overlay.classList.remove("hidden");
           const postRequest = axios.post(
             `/upload/${database}/${identifier}`,
             results.data
