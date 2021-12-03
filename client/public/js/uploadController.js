@@ -29,7 +29,6 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
           skipEmptyLines: true,
           fastMode: true,
           complete: function (results) {
-            overlay.classList.remove("hidden");
             axios
               .post(`/upload/datatwo/${identifier}`, results.data)
               .then(() => {
@@ -38,7 +37,6 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
                   skipEmptyLines: true,
                   fastMode: true,
                   complete: function (results) {
-                    overlay.classList.remove("hidden");
                     axios
                       .post(`/upload/datathree/${identifier}`, results.data)
                       .then(() => {
@@ -47,7 +45,6 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
                           skipEmptyLines: true,
                           fastMode: true,
                           complete: function (results) {
-                            overlay.classList.remove("hidden");
                             axios
                               .post(
                                 `/upload/datafour/${identifier}`,

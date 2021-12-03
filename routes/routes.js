@@ -30,7 +30,7 @@ router.use(passport.session());
 
 router.get("/", checkIsAuthenticated, (req, res) => {
   res.sendFile(
-    path.join(__dirname + "../../client/public/views/uploadData.html")
+    path.join(__dirname + "../../client/public/views/viewData.html")
   );
 });
 

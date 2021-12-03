@@ -60,7 +60,7 @@ deleteDataBtn.addEventListener("click", () => {
 });
 
 function start() {
-  getDataAll("dataone", dataTable);
+  getDataAll("datafour", dataTable);
 }
 
 start();
