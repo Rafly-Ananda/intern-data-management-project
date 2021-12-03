@@ -11,32 +11,6 @@ const overlay = document.querySelector(".overlay");
 
 // ** Functions
 
-// function postData(database, identifier, inputBox) {
-//   const csvData = document.getElementById(`${inputBox}`).files[0];
-//   Papa.parse(csvData, {
-//     header: true,
-//     skipEmptyLines: true,
-//     fastMode: true,
-//     complete: function (results) {
-//       const sendPostRequest = () => {
-//         try {
-//           overlay.classList.remove("hidden");
-//           const postRequest = axios.post(
-//             `/upload/${database}/${identifier}`,
-//             results.data
-//           );
-//           postRequest.then(() => {
-//             alert(`Data ${csvData.name} sudah ditambakan kedalam database`);
-//           });
-//         } catch (error) {
-//           console.log(error);
-//         }
-//       };
-//       sendPostRequest();
-//     },
-//   });
-// }
-
 function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
   const csvData__1 = document.getElementById(`${inputBox}`).files[0];
   const csvData__2 = document.getElementById(`${inputBox2}`).files[0];
@@ -80,7 +54,7 @@ function postData(identifier, inputBox, inputBox2, inputBox3, inputBox4) {
                                 results.data
                               )
                               .then(() => {
-                                alert(`Semua data berhasil ditambahkan !`);
+                                // alert(`Semua data berhasil ditambahkan !`);
                                 overlay.classList.add("hidden");
                                 location.reload();
                               });
