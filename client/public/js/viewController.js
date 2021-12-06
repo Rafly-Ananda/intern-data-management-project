@@ -2,9 +2,13 @@
 import axios, { Axios } from "axios";
 import zoomPlugin from "chartjs-plugin-zoom";
 import Chart from "chart.js/auto";
+// import { jsPDF } from "jspdf";
 
 Chart.register(zoomPlugin);
 const indicator__container = document.querySelector(".indicator");
+const smallIndicatorContainer = document.querySelector(
+  ".small__indicator__txt"
+);
 const data__container = document.querySelector(".table__container");
 
 const dataTable = document.querySelector(".table__1");
@@ -22,6 +26,7 @@ const indicatorHumidity = document.querySelector(".indicator");
 const lookDataBtn = document.querySelector(".look__data");
 const exportChart1Btn = document.querySelector("#export__btn_chart__1");
 const exportChart2Btn = document.querySelector("#export__btn_chart__2");
+const exportAllBtn = document.querySelector(".export__all__btn");
 // --------------------------------------------------------- //
 
 // ** Functions
@@ -233,6 +238,51 @@ function downloadToPdf(canvas) {
   pdf.save(`${canvas.getAttribute("id")}.pdf`);
 }
 
+function exportAll(canvas1, canvas2) {
+  const chartToImg1 = canvas1.toDataURL("image/jpeg", 1.0);
+  const chartToImg2 = canvas2.toDataURL("image/jpeg", 1.0);
+
+  let pdf = new jsPDF({
+    orientation: "portrait",
+    format: "a4",
+  });
+  pdf.setFont("times", "normal");
+  pdf.setFontSize(8);
+  // ! horizontal, vertical, width, height
+
+  pdf.addImage(chartToImg1, "JPEG", 11.5, 47, 90, 58, "chart1");
+  pdf.addImage(chartToImg2, "JPEG", 108.5, 47, 90, 58, "chart2");
+  // pdf.fromHTML(smallIndicatorContainer, 10, 150);
+
+  pdf.text(15, 45, "Grafik Data Humidity");
+  pdf.text(115, 45, "Grafik Data Temperatur");
+  pdf.text(12, 110, "Catatan :");
+  pdf.text(109, 110, "Catatan :");
+  pdf.text(109, 153, "Kesimpulan :");
+  pdf.text(42, 153, "Indikator Alarm Historis");
+
+  // ? Main PDF Layouting
+
+  // ** Chart 1 Border
+  pdf.rect(10, 40, 93, 100);
+  // ** Chart 2 Border
+  pdf.rect(107, 40, 93, 100);
+  // ** Outer
+  pdf.rect(6, 10, 198, 276.5);
+  // ** Header Box
+  pdf.rect(6, 10, 198, 20);
+  // ** Signature Box
+  pdf.rect(6, 260, 198, 26.5);
+  // ** Alarm Indicator Box
+  pdf.rect(10, 147.5, 93, 90);
+  // ** Summary Box
+  pdf.rect(107, 147.5, 93, 90);
+  // pdf.rect(10, 85, 90, 40);
+  // pdf.rect(110, 85, 90, 40);
+
+  pdf.save(`all.pdf`);
+}
+
 // ** Event Listeners
 
 lookDataBtn.addEventListener("click", () => {
@@ -242,6 +292,7 @@ lookDataBtn.addEventListener("click", () => {
   } else {
     dataIdentity.textContent = `Menampilkan Data ${identifier}`;
     reloadDocs.classList.remove("hidden");
+    exportAllBtn.classList.remove("hidden");
     clearGUI();
     getData("datafour", identifier, dataTable4);
     getData("datathree", identifier, dataTable3);
@@ -264,6 +315,10 @@ exportChart1Btn.addEventListener("click", () => {
 
 exportChart2Btn.addEventListener("click", () => {
   downloadToPdf(canvas2);
+});
+
+exportAllBtn.addEventListener("click", () => {
+  exportAll(canvas1, canvas2);
 });
 
 function start() {

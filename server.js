@@ -24,5 +24,5 @@ const routes = require("./routes/routes");
 app.use("/", routes);
 
 app.listen(PORT, () => {
-  console.log(`running on port ${PORT}`);
+  console.log(`running on http://localhost:${PORT}`);
 });
