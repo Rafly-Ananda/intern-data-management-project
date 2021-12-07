@@ -174,27 +174,24 @@ router.get("*", function (req, res) {
 // req.user => will return id username and password
 
 function checkIsAuthenticated(req, res, next) {
-  // if (req.isAuthenticated()) {
-  //   return next();
-  // }
-  // res.redirect("/login");
-  next();
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
 }
 
 function checkNotAuthenticated(req, res, next) {
-  // if (req.isAuthenticated()) {
-  //   return res.redirect("/");
-  // }
-  // next();
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
   next();
 }
 
 function isAdmin(req, res, next) {
-  // if (req.user.roles !== "admin") {
-  //   res.status(401);
-  //   return res.render("../views/error-401.ejs");
-  // }
-  // next();
+  if (req.user.roles !== "admin") {
+    res.status(401);
+    return res.render("../views/error-401.ejs");
+  }
   next();
 }
 

@@ -253,7 +253,7 @@ Masukkan Format No Dokumen : `);
   pdf.addImage(medionImg, 10, 14, 40, 13);
   pdf.addImage(chartToImg1, "JPEG", 11.5, 47, 90, 58, "chart1");
   pdf.addImage(chartToImg2, "JPEG", 108.5, 47, 90, 58, "chart2");
-  pdf.fromHTML(indicator__container, 28, 157);
+  pdf.fromHTML(indicator__container, 28, 158);
 
   // ** Texts
   pdf.setFont("times", "bold");
@@ -263,8 +263,25 @@ Masukkan Format No Dokumen : `);
   pdf.setFontSize(8);
   pdf.text(12, 110, "Catatan :");
   pdf.text(109, 110, "Catatan :");
-  pdf.text(109, 153, "Kesimpulan :");
-  pdf.text(42, 153, "Indikator Alarm Historis");
+  pdf.text(109, 152.5, "Kesimpulan Report Data Mesin (Diisi Oleh PD):");
+  pdf.text(109, 160, "Catatan :"); // catatan kesimpulan
+  pdf.text(170, 152.5, "OK");
+  pdf.text(182, 152.5, "Tidak Ok");
+  pdf.text(42, 155, "Indikator Alarm Historis");
+  pdf.text(24, 238, "Diperiksa:");
+  pdf.text(71, 238, "Menyimpulkan:");
+  pdf.text(148, 238, "Menyetujui:");
+  pdf.text(25, 265, "PD NM");
+  pdf.text(75, 265, "PD Staff");
+  pdf.text(125, 265, "PD AM");
+  pdf.text(172, 265, "Senior Manager");
+  pdf.text(
+    10,
+    274,
+    `PT Medion Farma Jaya
+Equipment Division
+Jl. Raya Batujajar No. 29 Cimareme, Kab. Bandung Barat, Jawa Barat 26887 | www.medion.co.id`
+  );
   pdf.setFontSize(9);
   pdf.text(15, 45, "Grafik Data Humidity");
   pdf.text(115, 45, "Grafik Data Temperatur");
@@ -282,6 +299,14 @@ Masukkan Format No Dokumen : `);
   pdf.rect(6, 10, 198, 273);
   // ** Header Box
   pdf.rect(6, 10, 198, 20);
+  // ** Alarm Indicator Box
+  pdf.rect(10, 147.5, 93, 75);
+  // ** Summary Box
+  pdf.rect(107, 147.5, 93, 75);
+  // ** Ok Box
+  pdf.rect(167, 150.75, 2, 2);
+  // ** Not Ok Box
+  pdf.rect(179, 150.75, 2, 2);
   // ! lines(vertical) - top point, height from top, bot point, height to bot
   pdf.line(55, 10, 55, 30); // Medion Logo Box
   pdf.line(150, 10, 150, 30); // Doc & Revision NO Box
@@ -289,14 +314,13 @@ Masukkan Format No Dokumen : `);
   pdf.line(187, 20, 187, 30); // Doc & Revision Separator Content
   // ! lines(horizontal) - left point, length from right, right point, lengh from left
   pdf.line(150, 20, 204, 20);
-  // ** Signature Box
-  pdf.rect(6, 255, 198, 28);
-  // ** Alarm Indicator Box
-  pdf.rect(10, 147.5, 93, 75);
-  // ** Summary Box
-  pdf.rect(107, 147.5, 93, 75);
-  // pdf.rect(10, 85, 90, 40);
-  // pdf.rect(110, 85, 90, 40);
+  pdf.line(107, 155.5, 200, 155.5); // kesimpulan box checklist
+  pdf.line(15, 260, 45, 260); // Signature Line PD NM
+  pdf.line(65, 260, 95, 260); // Signature Line PD Staff
+  pdf.line(115, 260, 145, 260); // Signature Line PD AM
+  pdf.line(165, 260, 195, 260); // Signature Line Senior Manager
+  pdf.line(6, 232, 204, 232); // Signature Box Separator top
+  pdf.line(6, 270, 204, 270); // Signature Box Separator bot
 
   pdf.save(`all.pdf`);
   indicator__container.classList.remove("smallTxt");
