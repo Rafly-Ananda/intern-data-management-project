@@ -343,3 +343,7 @@ td {
 .hidden {
   display: none;
 }
+
+.smallTxt {
+  font-size: 9px;
+}
