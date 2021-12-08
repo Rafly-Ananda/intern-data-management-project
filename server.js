@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname + "/client/public")));
 app.use(express.json({ limit: "50mb" }));
 app.use(cors(corsOptions));
 
-const routes = require("./routes/routes");
+const routes = require("./server/routes/routes");
 app.use("/", routes);
 
 app.listen(PORT, () => {

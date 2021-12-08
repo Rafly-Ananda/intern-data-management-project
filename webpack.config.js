@@ -23,7 +23,6 @@ module.exports = {
     assetModuleFilename: "src/assets/images/[name].[ext]",
   },
 
-  // Loaders
   module: {
     rules: [
       { test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: "asset/resource" },
