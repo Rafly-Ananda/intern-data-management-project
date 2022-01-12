@@ -15,6 +15,7 @@ const dataIdentity = document.querySelector(".data__identity");
 const canvas1 = document.querySelector("#chart__1");
 const canvas2 = document.querySelector("#chart__2");
 const searchField = document.querySelector(".search__container");
+const overlay = document.querySelector(".overlay");
 // ---------------------------------------------------------- //
 const identifierHeading = document.querySelector(".identifier__heading");
 const identifierField = document.querySelector(".identifier__field");
@@ -346,18 +347,26 @@ lookDataBtn.addEventListener("click", () => {
   if (!identifier || identifier.length < 8) {
     alert("Tolong Masukkan Input Data Dengan Benar");
   } else {
-    dataIdentity.textContent = `Menampilkan Data ${identifier}`;
-    reloadDocs.classList.remove("hidden");
-    exportAllBtn.classList.remove("hidden");
     clearGUI();
-    getData("datafour", identifier, dataTable4);
-    getData("datathree", identifier, dataTable3);
-    getData("datatwo", identifier, "", "chart__2");
-    getData("dataone", identifier, "", "chart__1");
-    lookDataBtn.classList.add("hidden");
-    identifierField.classList.add("hidden");
-    identifierHeading.classList.add("hidden");
-    searchField.classList.add("hidden");
+    dataIdentity.textContent = `Menampilkan Data ${identifier}`;
+    overlay.classList.remove("hidden");
+    axios
+      .all([
+        getData("datafour", identifier, dataTable4),
+        getData("datathree", identifier, dataTable3),
+        getData("datatwo", identifier, "", "chart__2"),
+        getData("dataone", identifier, "", "chart__1"),
+      ])
+      .then(() => {
+        overlay.classList.add("hidden");
+        reloadDocs.classList.remove("hidden");
+        exportAllBtn.classList.remove("hidden");
+        lookDataBtn.classList.add("hidden");
+        identifierField.classList.add("hidden");
+        identifierHeading.classList.add("hidden");
+        searchField.classList.add("hidden");
+        console.log("finished");
+      });
   }
 });
 

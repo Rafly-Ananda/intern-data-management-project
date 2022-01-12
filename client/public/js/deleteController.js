@@ -3,28 +3,36 @@ import axios, { Axios } from "axios";
 
 const dataTable = document.querySelector(".table__1");
 const deleteDataBtn = document.querySelector(".delete__data");
+const overlay = document.querySelector(".overlay");
 
 //  ** Functions
 
 function deleteData(identifier) {
-  axios.get(`/view/dataone/info/${identifier}`).then((result) => {
-    if (result.data.info) {
-      const sendDeleteRequest = async () => {
-        try {
-          await axios.delete(`/delete/${identifier}`);
-          alert("Data Berhasil Dihapus");
-          location.reload();
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      sendDeleteRequest();
-    } else {
-      alert(
-        "Data pada tanggal tersebut sudah dihapus, silahkan masukkan tanggal data lain !"
-      );
-    }
-  });
+  overlay.classList.remove("hidden");
+  axios
+    .get(`/view/dataone/info/${identifier}`)
+    .then((result) => {
+      if (result.data.info) {
+        const sendDeleteRequest = async () => {
+          try {
+            await axios.delete(`/delete/${identifier}`);
+            alert("Data Berhasil Dihapus");
+            location.reload();
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        sendDeleteRequest();
+      } else {
+        alert(
+          "Data pada tanggal tersebut sudah dihapus, silahkan masukkan tanggal data lain !"
+        );
+      }
+    })
+    .then(() => {
+      overlay.classList.add("hidden");
+    });
 }
 
 function getDataAll(dataBase, tableSection) {

@@ -18,31 +18,21 @@
     <title>Database System</title>
   </head>
   <body>
-    <div class="overlay hidden">
+    <div class="overlay hidden loading__animation">
       <div class="loading__message">
         <h1>
           Mohon Tunggu, Halaman Akan Reload Otomatis Setelah Semua Data Berhasil
           Di Unggah !
-          <br />
-          <br />
-          <center>
-            <span style="color: red">Jangan Tutup Halaman Ini !!!</span>
-          </center>
         </h1>
+        <span style="color: red">Jangan Tutup Halaman Ini !!!</span>
+        <div class="lds-dual-ring-upload loading-ring"></div>
       </div>
     </div>
     <nav class="navigation">
       <div class="top__nav__wrapper">
         <a href="/upload">
           <button
-            class="
-              bg-blue-500
-              hover:bg-blue-700
-              text-white
-              py-2
-              px-4
-              rounded-full
-            "
+            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full"
           >
             Unggah Data
           </button></a
@@ -50,14 +40,7 @@
 
         <a href="/view">
           <button
-            class="
-              bg-blue-500
-              hover:bg-blue-700
-              text-white
-              py-2
-              px-4
-              rounded-full
-            "
+            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full"
           >
             Lihat Data
           </button></a
@@ -65,14 +48,7 @@
 
         <a href="/delete">
           <button
-            class="
-              bg-red-500
-              hover:bg-red-700
-              text-white
-              py-2
-              px-4
-              rounded-full
-            "
+            class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full"
           >
             Hapus Data
           </button></a
@@ -82,14 +58,7 @@
       <div class="bot__nav__wrapper">
         <a href="/logout">
           <button
-            class="
-              bg-blue-500
-              hover:bg-blue-700
-              text-white
-              py-2
-              px-4
-              rounded-full
-            "
+            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full"
           >
             Keluar
           </button></a
@@ -147,14 +116,7 @@
 
         <button
           id="uploadConfirm"
-          class="
-            bg-blue-500
-            hover:bg-blue-700
-            text-white
-            py-2
-            px-4
-            rounded-full
-          "
+          class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full"
         >
           Unggah
         </button>

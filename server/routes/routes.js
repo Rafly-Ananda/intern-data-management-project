@@ -173,8 +173,6 @@ router.get("*", function (req, res) {
 
 // ** AuthChecker__Middleware ** //
 
-// req.user => will return id username and password
-
 function checkIsAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -188,6 +186,8 @@ function checkNotAuthenticated(req, res, next) {
   }
   next();
 }
+
+// req.user => will return id username and password
 
 function isAdmin(req, res, next) {
   if (req.user.roles !== "admin") {

@@ -67,7 +67,7 @@ body {
   left: 0;
   width: 13vw;
   height: 100vh;
-  background: #222222;
+  background: rgba(34, 34, 34, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -100,19 +100,22 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 10;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .loading__message {
+  margin-left: 11.75vw;
+  margin-bottom: 2vw;
   background-color: azure;
   min-width: 40vw;
   min-height: 20vh;
-  border: 2px solid darkgrey;
-  border-radius: 2em;
+  border-radius: 1em;
   padding: 2em;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -346,4 +349,54 @@ td {
 
 .smallTxt {
   font-size: 9px;
+}
+
+/* Spinner */
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  margin-left: 11.75vw;
+  margin-bottom: 2vw;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent rgb(182, 182, 182) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+.lds-dual-ring-upload {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  margin-top: 2vh;
+}
+
+.lds-dual-ring-upload:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid darkgray;
+  border-color: rgb(122, 122, 122) transparent rgb(88, 88, 88) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
