@@ -63,11 +63,6 @@ router.get("/delete", checkIsAuthenticated, isAdmin, (req, res) => {
   );
 });
 
-router.get("/export", (req, res) => {
-  res.sendFile(
-    path.join(__dirname + "../../../client/public/views/exportData.html")
-  );
-});
 
 // ** POST REQUEST
 
@@ -83,6 +78,7 @@ router.post(
 // ** CRUD API ** //
 
 // ? CREATE
+
 router.post(
   "/upload/:database/:identifier",
   checkIsAuthenticated,

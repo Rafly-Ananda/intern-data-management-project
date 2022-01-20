@@ -1,8 +1,8 @@
--- CREATE DATABASE mydb;
+CREATE DATABASE mydb;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    username VARCHAR (255),
+    username VARCHAR (255) UNIQUE,
     password VARCHAR(255),
     roles VARCHAR(255)
 );
